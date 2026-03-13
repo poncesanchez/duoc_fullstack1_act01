@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REST Visual - Mascotas</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <main class="app-main">
+        <section class="panel panel-request">
+          <form id="request-form">
+            <div class="field-group inline">
+              <label for="method">Método</label>
+              <select id="method" name="method">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT">PUT</option>
+                <option value="PATCH">PATCH</option>
+                <option value="DELETE">DELETE</option>
+              </select>
+            </div>
+
+            <div class="field-group inline">
+              <label for="pet-id">ID mascota (para GET/PUT/PATCH/DELETE)</label>
+              <input
+                type="number"
+                id="pet-id"
+                name="petId"
+                min="1"
+                placeholder="Ej: 1"
+              />
+            </div>
+
+            <div class="form-grid">
+              <div class="field-group">
+                <label for="nombre">Nombre</label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  placeholder="Nombre de la mascota"
+                />
+              </div>
+
+              <div class="field-group">
+                <label for="edad">Edad</label>
+                <input
+                  type="number"
+                  id="edad"
+                  name="edad"
+                  min="0"
+                  placeholder="Edad en años"
+                />
+              </div>
+
+              <div class="field-group">
+                <label for="imagen">URL de imagen</label>
+                <input
+                  type="url"
+                  id="imagen"
+                  name="imagen"
+                  placeholder="https://..."
+                />
+              </div>
+
+              <div class="field-group">
+                <label for="ciudad">Ciudad</label>
+                <input
+                  type="text"
+                  id="ciudad"
+                  name="ciudad"
+                  placeholder="Ciudad"
+                />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="descripcion">Descripción</label>
+              <textarea
+                id="descripcion"
+                name="descripcion"
+                rows="3"
+                placeholder="Breve descripción de la mascota"
+              ></textarea>
+            </div>
+
+            <div class="actions">
+              <button type="submit" class="btn primary">Enviar petición</button>
+              <button type="button" id="reload-table" class="btn ghost">
+                Recargar tabla (GET)
+              </button>
+            </div>
+          </form>
+
+          <div class="panel-sub">
+            <h3>Vista previa de la petición</h3>
+            <pre id="request-preview" class="code-block"></pre>
+          </div>
+        </section>
+
+        <section class="panel panel-response">
+          <h2>Datos de la tabla `mascotas`</h2>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Edad</th>
+                  <th>Imagen</th>
+                  <th>Descripción</th>
+                  <th>Ciudad</th>
+                </tr>
+              </thead>
+              <tbody id="pets-table-body">
+                <tr>
+                  <td colspan="6" class="empty-cell">
+                    No hay datos todavía. Carga la tabla o crea una mascota.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="panel-sub">
+            <h3>Respuesta de la API</h3>
+            <pre id="response-output" class="code-block"></pre>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

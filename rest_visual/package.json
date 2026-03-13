@@ -1,0 +1,25 @@
+{
+  "name": "rest_visual",
+  "version": "1.0.0",
+  "description": "Ejemplo sencillo de frontend y backend Node para CRUD de mascotas con base de datos local SQLite.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "sqlite",
+    "crud"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
