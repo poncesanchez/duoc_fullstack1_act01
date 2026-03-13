@@ -12,8 +12,31 @@ const requestPreview = document.getElementById('request-preview');
 const responseOutput = document.getElementById('response-output');
 const petsTableBody = document.getElementById('pets-table-body');
 
+// URL base configurable para poder usar backend local o remoto (por ejemplo en GitHub Pages)
+const API_HOST = (() => {
+  // 1) Permitir sobreescribir desde una variable global si quisieras
+  if (window.API_HOST) {
+    return window.API_HOST.replace(/\/+$/, '');
+  }
+
+  // 2) Permitir guardar la URL del backend en localStorage sin tocar el código
+  const stored = window.localStorage.getItem('API_HOST');
+  if (stored) {
+    return stored.replace(/\/+$/, '');
+  }
+
+  // 3) Si estás en GitHub Pages, por defecto apunta a un backend remoto (modifica esta URL)
+  if (window.location.hostname.endsWith('github.io')) {
+    // Cambia esto por la URL real donde publiques tu backend Node (Render, Railway, etc.)
+    return 'http://localhost:3000';
+  }
+
+  // 4) En desarrollo local, usa mismo host/puerto del backend que sirve el frontend
+  return window.location.origin;
+})();
+
 function getBaseUrl() {
-  return `${window.location.origin}/api/mascotas`;
+  return `${API_HOST}/api/mascotas`;
 }
 
 function buildRequestPreview() {
